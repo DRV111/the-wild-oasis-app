@@ -3,6 +3,7 @@ import GlobalStyles from './styles/GlobalStyles';
 import Input from './ui/Input';
 import Button from './ui/Button';
 import Heading from './ui/Heading';
+import Row from './ui/Row';
 
 const StyledApp = styled.div`
   background-color: orangered;
@@ -13,10 +14,25 @@ function App() {
     <>
       <GlobalStyles />
       <StyledApp>
-        <Heading as="h1">App</Heading>
-        <Button>Click me</Button>
-        <Heading as="h2">Something</Heading>
-        <Input type="text" placeholder="Start typing here..." />
+        <Row>
+          <Row type="horizontal">
+            <Heading as="h1">App</Heading>
+            <div>
+              <Button variation="primary" size="medium">
+                Click me
+              </Button>
+              <Button variation="secondary" size="small">
+                Special button
+              </Button>
+            </div>
+          </Row>
+          <Row>
+            <Heading as="h2">Something</Heading>
+            <form>
+              <Input type="text" placeholder="Start typing here..." />
+            </form>
+          </Row>
+        </Row>
       </StyledApp>
     </>
   );

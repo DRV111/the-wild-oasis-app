@@ -11,7 +11,6 @@ const Main = styled.main`
 function AppLayout() {
   return (
     <div>
-      <p>App Layout</p>
       <Sidebar />
       <Header />
       <Main>

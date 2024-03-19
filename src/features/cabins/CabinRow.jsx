@@ -5,6 +5,7 @@ import { formatCurrency } from '../../utils/helpers';
 import CreateCabinForm from './CreateCabinForm';
 import { useDeleteCabin } from './useDeleteCabin';
 import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+import { useCreateCabin } from './useCreateCabin';
 
 const TableRow = styled.div`
   display: grid;
@@ -46,8 +47,6 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
-  const [showForm, setShowForm] = useState(false);
-
   const {
     id: cabinId,
     name,
@@ -55,9 +54,23 @@ function CabinRow({ cabin }) {
     regularPrice,
     discount,
     image,
+    description,
   } = cabin;
+  const [showForm, setShowForm] = useState(false);
+  const { isDeleting, deleteCabin } = useDeleteCabin();
+  const { createCabin, isCreating } = useCreateCabin();
 
-  const { isDeleting, deleteCabin } = useDeleteCabin(cabinId);
+  function handleDuplicateCabin() {
+    createCabin({
+      name: `Copy of ${name}`,
+      maxCapacity,
+      regularPrice,
+      discount,
+      image,
+      description,
+    });
+  }
+
   return (
     <>
       <TableRow role="table">
@@ -71,7 +84,7 @@ function CabinRow({ cabin }) {
           <span>&mdash;</span>
         )}
         <div>
-          <button>
+          <button disabled={isCreating} onClick={handleDuplicateCabin}>
             <HiSquare2Stack />
           </button>
           <button onClick={() => setShowForm((show) => !show)}>

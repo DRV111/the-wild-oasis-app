@@ -1,3 +1,3 @@
 # The Wild Oasis App
 
-DEPLOY: https://the-wild-oasis-my-app.netlify.app/
+DEPLOY: the-wild-oasis-my-app.vercel.app
